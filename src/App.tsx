@@ -9,10 +9,9 @@ import { Home } from "./components/Home";
 import { useEffect } from "react";
 
 function App() {
-  useGtmPageView();
-
   return (
     <BrowserRouter>
+      <PageViewSender />
       <CookieBanner />
       <Routes>
         <Route index element={<Home />} />
@@ -25,12 +24,23 @@ function App() {
 
 export default App;
 
+function PageViewSender() {
+  useGtmPageView();
+
+  return null;
+}
+
 function useGtmPageView() {
   const location = useLocation();
 
   useEffect(() => {
-    if ((window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer) {
-      (window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer.push({
+    if (
+      (window as Window & typeof globalThis & { dataLayer: unknown[] })
+        .dataLayer
+    ) {
+      (
+        window as Window & typeof globalThis & { dataLayer: unknown[] }
+      ).dataLayer.push({
         event: "custom-page-view",
         page: location.pathname + location.search,
       });
