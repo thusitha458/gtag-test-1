@@ -1,12 +1,10 @@
 import "./App.css";
 
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 import { About } from "./components/About";
 import { ContactUs } from "./components/ContactUs";
 import { CookieBanner } from "./components/CookieBanner";
-import { Home } from "./components/Home";
-import { useEffect } from "react";
 
 function App() {
   // useGtmPageView();
@@ -25,15 +23,15 @@ function App() {
 
 export default App;
 
-function useGtmPageView() {
-  const location = useLocation();
+// function useGtmPageView() {
+//   const location = useLocation();
 
-  useEffect(() => {
-    if ((window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer) {
-      (window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer.push({
-        event: "pageview",
-        page: location.pathname + location.search,
-      });
-    }
-  }, [location]);
-}
+//   useEffect(() => {
+//     if ((window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer) {
+//       (window as Window & typeof globalThis & { dataLayer: unknown[]}).dataLayer.push({
+//         event: "pageview",
+//         page: location.pathname + location.search,
+//       });
+//     }
+//   }, [location]);
+// }
