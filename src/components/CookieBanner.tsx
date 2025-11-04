@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-export function CookieConsent() {
-  const { showCookieConsent, onCloseCookieConsent } = useCookieConsent();
+export function CookieBanner() {
+  const { showCookieBanner, onCloseCookieBanner } = useCookieConsent();
 
   const onAccept = () => {
-    onCloseCookieConsent();
+    onCloseCookieBanner();
     setCookie(
       CONSENT_COOKIE_NAME,
       JSON.stringify({
@@ -15,7 +15,7 @@ export function CookieConsent() {
   };
 
   const onDeny = () => {
-    onCloseCookieConsent();
+    onCloseCookieBanner();
     setCookie(
       CONSENT_COOKIE_NAME,
       JSON.stringify({
@@ -25,7 +25,7 @@ export function CookieConsent() {
     );
   };
 
-  if (!showCookieConsent) {
+  if (!showCookieBanner) {
     return null;
   }
 
@@ -48,10 +48,10 @@ export function CookieConsent() {
           justifyContent: "flex-end",
         }}
       >
-        <button style={{ marginRight: "1rem" }} onClick={onAccept}>
+        <button style={{ marginRight: "1rem" }} onClick={onAccept} id="cookie-banner-accept-btn">
           Accept
         </button>
-        <button onClick={onDeny}>Deny</button>
+        <button onClick={onDeny} id="cookie-banner-deny-btn">Deny</button>
       </div>
     </div>
   );
@@ -60,7 +60,7 @@ export function CookieConsent() {
 const CONSENT_COOKIE_NAME = "CookieConsent";
 
 const useCookieConsent = () => {
-  const [showCookieConsent, setShowCookieConsent] = useState(false);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
     const cookie = getCookie(CONSENT_COOKIE_NAME);
@@ -83,12 +83,12 @@ const useCookieConsent = () => {
     }
 
     eraseCookie(CONSENT_COOKIE_NAME);
-    setShowCookieConsent(true);
+    setShowCookieBanner(true);
   }, []);
 
   return {
-    showCookieConsent,
-    onCloseCookieConsent: () => setShowCookieConsent(false),
+    showCookieBanner,
+    onCloseCookieBanner: () => setShowCookieBanner(false),
   };
 };
 
