@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { About } from "./components/About";
 import { ContactUs } from "./components/ContactUs";
 import { CookieBanner } from "./components/CookieBanner";
+import { Home } from "./components/Home";
 
 function App() {
   // useGtmPageView();
