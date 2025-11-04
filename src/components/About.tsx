@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export function About() {
   return (
     <>
@@ -5,6 +7,7 @@ export function About() {
       <p className="read-the-docs">
         We are some people. Don't have anymore infomation sadly. :)
       </p>
+      <Link to="/">Home</Link>
     </>
   );
 }
